@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.Tiwee">
+    package="com.example.AlloaTV">
     <queries>
         <!-- If your app opens https URLs -->
         <intent>
@@ -9,7 +9,7 @@
 
     </queries>
    <application
-        android:label="Tiwee"
+        android:label="AlloaTV"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
 
