@@ -81,7 +81,7 @@ class _MainAppbarState extends State<MainAppbar>
               const Padding(
                 padding: EdgeInsets.all(4.0),
                 child: Text(
-                  "Tiwee888",//Ricky：APP上方橫條
+                  "Alloa TV",//Ricky：APP上方橫條
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,

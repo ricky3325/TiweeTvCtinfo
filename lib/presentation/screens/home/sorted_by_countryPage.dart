@@ -12,6 +12,7 @@ import 'package:Tiwee/presentation/widgets/sorted_by_category_widget/fav_all_car
 import 'package:Tiwee/presentation/screens/home/player.dart';
 import 'package:Tiwee/presentation/screens/home/firstPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wakelock/wakelock.dart';
 
 final currentIndexProvider = StateProvider<int>((ref) {
   return 0;
@@ -28,6 +29,8 @@ class SortedByCountryPage extends ConsumerWidget {
     final countrys = ref.watch(countryProvider);
 
     final currentIndex = ref.watch(currentIndexProvider.state);
+
+    Wakelock.disable();
 
     return category.when(
       data: (data) {

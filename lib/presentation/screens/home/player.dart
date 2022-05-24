@@ -2,6 +2,7 @@ import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:Tiwee/core/consts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:wakelock/wakelock.dart';
 
 class Player extends StatelessWidget {
   Player({Key? key, required this.url}) : super(key: key);
@@ -27,6 +28,7 @@ class Player extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Wakelock.enable();
     return WillPopScope(
       onWillPop: () async {
         Navigator.pop(context);

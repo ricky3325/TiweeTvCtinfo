@@ -14,6 +14,7 @@ import 'package:Tiwee/presentation/screens/home/sorted_by_countryPage.dart';
 import 'package:Tiwee/presentation/widgets/home_page_widget/big_card_channel.dart';
 import 'package:Tiwee/presentation/widgets/main_appbar.dart';
 import 'package:Tiwee/presentation/screens/home/player.dart';
+import 'package:wakelock/wakelock.dart';
 
 class Menu extends ConsumerWidget {
   const Menu({Key? key}) : super(key: key);
@@ -25,6 +26,8 @@ class Menu extends ConsumerWidget {
     final categories = ref.watch(categoryProvider);
 
     final size = MediaQuery.of(context).size;
+    Wakelock.disable();
+
     return SafeArea(
       child: Scaffold(
         body: Container(

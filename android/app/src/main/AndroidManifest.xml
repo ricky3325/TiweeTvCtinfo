@@ -40,4 +40,9 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /><!--Ricky：要求權限-->
+    <uses-permission android:name="android.permission.INTERNET" /><!--Ricky：要求權限-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><!--Ricky：要求網路權限-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /><!--Ricky：要求網路權限-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /><!--Ricky：要求不休眠權限-->
 </manifest>

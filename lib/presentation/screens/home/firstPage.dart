@@ -11,6 +11,7 @@ import 'package:Tiwee/presentation/widgets/tv_card.dart';
 import 'package:Tiwee/presentation/screens/home/player.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Tiwee/presentation/screens/home/menu.dart';
+import 'package:wakelock/wakelock.dart';
 
 class myChannels{
    String name;
@@ -60,6 +61,7 @@ class F_Player extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
     final channels = ref.watch(countryProvider);
+    Wakelock.enable();
     /*return WillPopScope(
       onWillPop: () async {
         Navigator.pop(context);
