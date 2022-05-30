@@ -6,12 +6,29 @@ import 'package:Tiwee/presentation/screens/splash/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  /*SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color(0xff1a1726)
-  ));
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft])
+  ));*/
+  SystemChrome.setEnabledSystemUIOverlays([]);
+  /*SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]) //Ricky：固定裝置的轉向 橫向
 
+      .then((value) =>
+      runApp(ProviderScope(
+        child: MaterialApp(
+          themeMode: ThemeMode.system,
+
+
+          title: "Tiwee",
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(textTheme: GoogleFonts.soraTextTheme(),
+          scaffoldBackgroundColor: Color(0xff1a1726),),//Ricky：開頭背景
+        home:  MyApp(),//Ricky：啟動開頭動畫
+
+      ),
+
+      )));*/
+  SystemChrome.setPreferredOrientations([])
       .then((value) =>
       runApp(ProviderScope(
         child: MaterialApp(

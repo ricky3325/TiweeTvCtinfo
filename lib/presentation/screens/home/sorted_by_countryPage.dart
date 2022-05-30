@@ -94,23 +94,24 @@ class SortedByCountryPage extends ConsumerWidget {
                                   String? sendUrl = await prefs.getString('url');
                                   String? sendCountry = await prefs.getString('country');
                                   String playUrl, playCountry;
-                                  if(sendUrl == null || sendCountry == null){
+                                  if(sendUrl == null){
                                     //print("22222222222222222222222222222222222222222");
-                                    sendUrl = "https://bloomberg-quicktake-1-lu.samsung.wurl.com/manifest/playlist.m3u8";
-                                    sendCountry = countryCode2[index][0];
+                                    sendUrl = "https://bloomberg-quicktake-1-lu.samsung.wurl.com/manifest/playlist.m3u8";//Ricky：沒有紀錄時的預設撥放
                                     //print(sendUrl);
                                     //print(sendCountry);
                                     //print("22222222222222222222222222222222222222222");
                                   }
 
+                                  sendCountry = countryCode2[index][0];
+
                                   playUrl = sendUrl.toString();
                                   playCountry = sendCountry.toString();
-                                  //print("666666666666666666666666666666666666666666");
-                                  //print(playUrl);
-                                  //print(playCountry);
+                                  print("666666666666666666666666666666666666666666");
+                                  print(playUrl);
+                                  print(playCountry);
 
-                                  //print(countryCode2[index][0]);//Ricky：這邊會出現國家完整名稱 如 United States
-                                  //print("99999999999999999999999999999999999999999999");
+                                  print(countryCode2[index][0]);//Ricky：這邊會出現國家完整名稱 如 United States
+                                  print("99999999999999999999999999999999999999999999");
                                   Navigator.push(
                                     context, 
                                     MaterialPageRoute(builder: (context) => F_Player(

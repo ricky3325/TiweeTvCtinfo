@@ -25,7 +25,6 @@ class F_Player extends ConsumerWidget {
   final String country;
   final String url;
   final int channelCount;
-  final GlobalKey<ScaffoldState> _key = GlobalKey();
   
   /*SelectView(IconData icon, String text, String id) {
     return new PopupMenuItem<String>(
@@ -66,13 +65,9 @@ class F_Player extends ConsumerWidget {
     bool path;
     bool videoIsShow = true;
     double videoHigh = 50.0;
-    double screenWidth = 0;
-    double screenHigh = 0;
     Wakelock.enable();
     
     print("方向方向方向方向方向方向方向方向方向方向方向");
-    screenHigh = MediaQuery.of(context).size.height;
-    screenWidth = MediaQuery.of(context).size.width;
     print(MediaQuery.of(context).size.width);
     print(MediaQuery.of(context).size.height);
     if(MediaQuery.of(context).size.width > MediaQuery.of(context).size.height){
@@ -159,8 +154,10 @@ class F_Player extends ConsumerWidget {
 
     bool _visible = true;
     
-    return Scaffold(
-        key: _key, 
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+
         drawer: Drawer(
               child: 
                 ListView(
@@ -261,43 +258,16 @@ class F_Player extends ConsumerWidget {
                 ],
             ),*/
           ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _key.currentState!.openDrawer(), // <-- Opens drawer
-        ),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(videoHigh), // here the desired height
-          child: Stack(
-            children: <Widget>[
-              Container(
-                width: screenWidth, 
-                height: screenHigh, 
-                color: Colors.blue,
-                child:Visibility(
-                  child: BetterPlayer.network(
-                    url,
-                    betterPlayerConfiguration: betterPlayerConfiguration
-                  ),
-                  visible: videoIsShow,
-                ),
-              ),
-              Positioned(
-                left: 12,
-                top: screenHigh / 2,
-                child: Container(
-                  width: 40, 
-                  height: 40, 
-                  color: Color.fromARGB(255, 255, 0, 0),
-                  child: GestureDetector(
-                    onTap: () => _key.currentState!.openDrawer(),
-                  ),
-                ),
-              ),
-              RaisedButton(
-                child: Text('按鈕'),
-                onPressed: () => _key.currentState!.openDrawer(),
-              ),
-            ],
+          child: Visibility(
+            child: BetterPlayer.network(
+              url,
+              betterPlayerConfiguration: betterPlayerConfiguration
+            ),
+            visible: videoIsShow,
           ),
+          
           /*AppBar(
             title: Text("工程系統"),
             
@@ -409,9 +379,7 @@ class F_Player extends ConsumerWidget {
             //pricePage(),//Center(child: Text("1", style: TextStyle(fontSize: 40),)),
           ],
         ),*/
-      );
-  }
-  void btnClickEvent() {
-    print('btnClickEvent...');
+      ),
+    );
   }
 }
