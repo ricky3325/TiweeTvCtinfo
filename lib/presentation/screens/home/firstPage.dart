@@ -12,6 +12,7 @@ import 'package:Tiwee/presentation/screens/home/player.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Tiwee/presentation/screens/home/menu.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class myChannels{
    String name;
@@ -20,25 +21,78 @@ class myChannels{
    myChannels({required this.name, required this.url});
 }
 
+
+class TestCard extends StatefulWidget {
+  TestCard(this._key);
+  GlobalKey<ScaffoldState> _key;
+  @override
+  State<StatefulWidget> createState() {
+    return _FulBackPage(_key);
+  }
+}
+class _FulBackPage extends State<TestCard> {
+  _FulBackPage(this._key);
+  GlobalKey<ScaffoldState> _key;
+  var mainColor = Color.fromARGB(20, 255, 252, 51);
+  bool iconShow = true;
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new Column(
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+          Container(
+            width: 80, 
+            height: MediaQuery.of(context).size.height, 
+            color: Color.fromARGB(20, 107, 107, 107),
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  iconShow = !iconShow;
+                });
+              },
+            ),
+          ),
+          Positioned(
+            left: 12,
+            top: MediaQuery.of(context).size.height / 2,
+            child:  Visibility(
+              child: Container(
+                width: 40, 
+                height: 40, 
+                color: mainColor,
+                child: GestureDetector(
+                  child: Icon(
+                    FontAwesomeIcons.tv,
+                    color: Color.fromARGB(255, 14, 225, 253),
+                  ),
+                  onTap: () {
+                      _key.currentState!.openDrawer();
+                      setState(() {
+                        iconShow = false;
+                      });
+                    },
+                  ),
+                ),
+              visible: iconShow,
+            ),
+          ),
+         
+          ]
+        ),
+        
+        
+      ],
+    );
+  }
+}
 class F_Player extends ConsumerWidget {
   F_Player({Key? key, required this.url, required this.country, required this.channelCount}) : super(key: key);
   final String country;
   final String url;
   final int channelCount;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
-  
-  /*SelectView(IconData icon, String text, String id) {
-    return new PopupMenuItem<String>(
-        value: id,
-        child: new Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-                new Icon(icon, color: Colors.blue),
-                new Text(text),
-            ],
-        )
-    );
-  }*/
 
   var betterPlayerConfiguration = BetterPlayerConfiguration(
     autoPlay: true,
@@ -89,73 +143,21 @@ class F_Player extends ConsumerWidget {
       path = true;
     }
     print("方向方向方向方向方向方向方向方向方向方向方向");
-    /*return WillPopScope(
-      onWillPop: () async {
-        Navigator.pop(context);
-        return false;
-      },
-      
-      child: 
-      SafeArea(
-        child: 
-        BetterPlayer.network(url,
-            betterPlayerConfiguration: betterPlayerConfiguration),
-      ),
-    );*/
-    /*return Scaffold(
-      /*appBar: AppBar(
-        title: Text("Basic player"),
-      ),*///Ricky：最上面的導覽條
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              "Basic player created with the simplest factory method. Shows video from URL.",
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          SafeArea(
-            child: BetterPlayer.network(
-              url,
-              betterPlayerConfiguration: betterPlayerConfiguration
-            ),
-          ),//Ricky：只會在可以顯示的區域才顯示，邊邊角角不顯示
-        ],
-      ),
-    );*/
+
     List<myChannels> _Channels = [];
     var _darwershow = channels.when(
       data: (d) => List.generate(d[country]!.length, (index) {
         String name = d[country]![index].name;
         String url = d[country]![index].url;
-        //print(url);
-        //print(name);
-        //print("55555555555555555555555555555555555555555555");
-        
+
         _Channels.add(myChannels(name:name,url:url));
         print(_Channels.length);
-        /*return Card(
-          child: InkWell(
-          splashColor: Color.fromARGB(255, 153, 105, 199).withAlpha(30),
-          onTap: () {
-            debugPrint(d[country]![index].url);
-          },
-          child: ListTile(
-            title: Text(d[country]![index].name),
-          ),
-          ),
-        );*/
-        //return GestureDetector(onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => Player(url: data[country]![index].url, country:""),)),child: TvCard(size: size, index: index, data: data, ref: ref, country: country));
-      }
+}
       ),
       error: (error, stackTrace) => Text(error.toString()),
       loading: () =>  SizedBox(
           width: 50, child: Lottie.asset(kLoading, width: 60)),
     );
-
-
-    //var _darwershow = ;
 
     bool _visible = true;
     
@@ -226,18 +228,8 @@ class F_Player extends ConsumerWidget {
                         debugPrint(_Channels[i].url);
                         SharedPreferences prefs = await SharedPreferences.getInstance();
 
-                        /*print("22222222222222222222222222222222222222222");
-                        print(await prefs.getString('url'));
-                        print(await prefs.getString('country'));
-                        print("22222222222222222222222222222222222222222");*/
-
                         await prefs.setString('url', _Channels[i].url);
                         await prefs.setString('country', country);
-
-                        /*print("44444444444444444444444444444444444444444");
-                        print(await prefs.getString('url'));
-                        print(await prefs.getString('country'));
-                        print("44444444444444444444444444444444444444444");*/
 
                         Navigator.push(context, MaterialPageRoute(builder: (context) => F_Player(url: _Channels[i].url, country: country, channelCount: channelCount),));
                       },
@@ -248,22 +240,10 @@ class F_Player extends ConsumerWidget {
                     ),
                   ],
                 ),
-              /*ListView(
-                // Important: Remove any padding from the ListView.
-                padding: EdgeInsets.zero,
-                children: <Widget>[
-                  DrawerHeader(
-                    child: Text('國立屏東大學\n資料庫系統期末專題'),
-                    decoration: BoxDecoration(
-                    color: Colors.blue,
-                    ),
-                  ),
-                ],
-            ),*/
           ),
-        floatingActionButton: FloatingActionButton(
+        /*floatingActionButton: FloatingActionButton(
           onPressed: () => _key.currentState!.openDrawer(), // <-- Opens drawer
-        ),
+        ),*/
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(videoHigh), // here the desired height
           child: Stack(
@@ -280,7 +260,8 @@ class F_Player extends ConsumerWidget {
                   visible: videoIsShow,
                 ),
               ),
-              Positioned(
+              TestCard(_key),
+              /*Positioned(
                 left: 12,
                 top: screenHigh / 2,
                 child: Container(
@@ -291,55 +272,10 @@ class F_Player extends ConsumerWidget {
                     onTap: () => _key.currentState!.openDrawer(),
                   ),
                 ),
-              ),
-              RaisedButton(
-                child: Text('按鈕'),
-                onPressed: () => _key.currentState!.openDrawer(),
-              ),
+              ),*/
             ],
           ),
-          /*AppBar(
-            title: Text("工程系統"),
-            
-            //leading: Icon(FontAwesomeIcons.dragon),
-            actions: <Widget>[
-              /*IconButton(
-                icon: Icon(FontAwesomeIcons.search),
-                onPressed: null,
-              )*/
-              new PopupMenuButton<String>(
-              itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-                  this.SelectView(Icons.message, '發起群聊', 'A'),
-                  this.SelectView(Icons.group_add, '新增服務', 'B'),
-                  this.SelectView(Icons.cast_connected, '掃一掃碼', 'C'),
-              ],
-              onSelected: (String action) {
-                  // 點選選項的時候
-                  switch (action) {
-                      case 'A': break;
-                      case 'B': break;
-                      case 'C': break;
-                  }
-              },
-          ),
-            ],
-            /*bottom: TabBar(
-              tabs: tabList.map((choice) {
-                return Tab(
-                  text: choice.title,       //Tab's title
-                  icon: Icon(choice.icon),  //Tab's icon
-                );
-              }).toList(),
-            ),*/
-          ),*/
         ),
-        
-        /*behavior: HitTestBehavior.translucent,
-        onTap: () {
-          print("0000000000000000000000000000000");
-          _visible = !_visible;
-          print(_visible);
-        },*/
 
         body:
           Visibility(
@@ -353,18 +289,8 @@ class F_Player extends ConsumerWidget {
                         debugPrint(_Channels[i].url);
                         SharedPreferences prefs = await SharedPreferences.getInstance();
 
-                        /*print("22222222222222222222222222222222222222222");
-                        print(await prefs.getString('url'));
-                        print(await prefs.getString('country'));
-                        print("22222222222222222222222222222222222222222");*/
-
                         await prefs.setString('url', _Channels[i].url);
                         await prefs.setString('country', country);
-
-                        /*print("44444444444444444444444444444444444444444");
-                        print(await prefs.getString('url'));
-                        print(await prefs.getString('country'));
-                        print("44444444444444444444444444444444444444444");*/
 
                         Navigator.push(context, MaterialPageRoute(builder: (context) => F_Player(url: _Channels[i].url, country: country, channelCount: channelCount),));
                       },
@@ -377,41 +303,6 @@ class F_Player extends ConsumerWidget {
             ),
             visible: path,
           ),
-        
-        /*body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              "Basic player created with the simplest factory method. Shows video from URL.",
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          SafeArea(
-            child: BetterPlayer.network(
-              url,
-              betterPlayerConfiguration: betterPlayerConfiguration
-            ),
-          ),//Ricky：只會在可以顯示的區域才顯示，邊邊角角不顯示
-        ],
-      ),*/
-        /*body: TabBarView(
-        children: [
-            SafeArea(
-            child: BetterPlayer.network(
-              url,
-              betterPlayerConfiguration: betterPlayerConfiguration
-            ),
-          ),//Ricky：只會在可以顯示的區域才顯示，邊邊角角不顯示
- 
-          SortedByCountryPage(allChanellsCount:5111 ,),
-            //recordPage(),//Center(child: Text("0", style: TextStyle(fontSize: 40),)),
-            //pricePage(),//Center(child: Text("1", style: TextStyle(fontSize: 40),)),
-          ],
-        ),*/
       );
-  }
-  void btnClickEvent() {
-    print('btnClickEvent...');
   }
 }
