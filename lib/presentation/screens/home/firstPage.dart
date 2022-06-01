@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Tiwee/presentation/screens/home/menu.dart';
 import 'package:wakelock/wakelock.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class myChannels{
    String name;
@@ -42,47 +43,52 @@ class _FulBackPage extends State<TestCard> {
       children: <Widget>[
         Stack(
           children: <Widget>[
-          Container(
-            width: 80, 
-            height: MediaQuery.of(context).size.height, 
-            color: Color.fromARGB(0, 107, 107, 107),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  iconShow = !iconShow;
-                });
-              },
+            Container(
+              width: 80, 
+              height: MediaQuery.of(context).size.height, 
+              color: Color.fromARGB(0, 107, 107, 107),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    iconShow = !iconShow;
+                  });
+                },
+              ),
             ),
-          ),
-          Positioned(
-            left: 12,
-            top: MediaQuery.of(context).size.height / 2,
-            child:  Visibility(
-              child: Container(
-                width: 40, 
-                height: 40, 
-                color: mainColor,
-                child: GestureDetector(
-                  child: Icon(
-                    FontAwesomeIcons.tv,
-                    color: Color.fromARGB(255, 14, 225, 253),
+            Positioned(
+              left: 12,
+              top: MediaQuery.of(context).size.height / 2,
+              child:  Visibility(
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 13, 
+                  height: 40, 
+                  color: mainColor,
+                  child: GestureDetector(
+                    child: /*SvgPicture.asset(
+                      "assets/icons/alarm.svg",
+                      color: Colors.white70,
+                    ),*/
+                    SvgPicture.asset(
+                      "assets/icons/list.svg",
+                      //color: Color.fromARGB(255, 7, 255, 214),
+                    ),
+                    /*Icon(
+                      FontAwesomeIcons.tv,
+                      color: Color.fromARGB(255, 14, 225, 253),
+                    ),*/
+                    onTap: () {
+                        _key.currentState!.openDrawer();
+                        setState(() {
+                          iconShow = false;
+                        });
+                      },
+                    ),
                   ),
-                  onTap: () {
-                      _key.currentState!.openDrawer();
-                      setState(() {
-                        iconShow = false;
-                      });
-                    },
-                  ),
-                ),
-              visible: iconShow,
+                visible: iconShow,
+              ),
             ),
-          ),
-         
           ]
         ),
-        
-        
       ],
     );
   }
