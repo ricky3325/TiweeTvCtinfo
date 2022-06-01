@@ -33,7 +33,7 @@ class TestCard extends StatefulWidget {
 class _FulBackPage extends State<TestCard> {
   _FulBackPage(this._key);
   GlobalKey<ScaffoldState> _key;
-  var mainColor = Color.fromARGB(20, 255, 252, 51);
+  var mainColor = Color.fromARGB(0, 255, 252, 51);
   bool iconShow = true;
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _FulBackPage extends State<TestCard> {
           Container(
             width: 80, 
             height: MediaQuery.of(context).size.height, 
-            color: Color.fromARGB(20, 107, 107, 107),
+            color: Color.fromARGB(0, 107, 107, 107),
             child: GestureDetector(
               onTap: () {
                 setState(() {
