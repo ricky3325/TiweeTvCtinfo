@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:Tiwee/presentation/screens/home/sorted_by_countryPage.dart';
 import 'package:Tiwee/presentation/screens/home/menu.dart';
 import 'package:Tiwee/presentation/screens/home/setting.dart';
 
@@ -9,7 +10,7 @@ final pageControllerProvider = Provider<PageController>((ref) {
 
 class HomePage extends ConsumerWidget {
   HomePage({Key? key}) : super(key: key);
-  final List<Widget> pages = [Menu(), Setting()];
+  final List<Widget> pages = [SortedByCountryPage(), Setting()];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

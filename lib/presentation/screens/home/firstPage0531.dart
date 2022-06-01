@@ -205,7 +205,7 @@ class F_Player extends ConsumerWidget {
                                   splashColor: Color.fromARGB(255, 153, 105, 199).withAlpha(30),
                                   onTap: () {
                                     debugPrint('Country tapped.');
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => SortedByCountryPage(allChanellsCount: channelCount ,)));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => SortedByCountryPage()));
                                   },
                                   child: ListTile(
                                     title: Text("COUNTRY"),

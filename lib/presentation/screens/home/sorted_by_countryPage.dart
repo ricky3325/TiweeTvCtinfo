@@ -19,8 +19,9 @@ final currentIndexProvider = StateProvider<int>((ref) {
 });
 
 class SortedByCountryPage extends ConsumerWidget {
-  const SortedByCountryPage({Key? key,required this.allChanellsCount}) : super(key: key);
-  final int allChanellsCount;
+  const SortedByCountryPage({Key? key}) : super(key: key);
+  /*const SortedByCountryPage({Key? key,required this.allChanellsCount}) : super(key: key);
+  final int allChanellsCount;*/
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -115,7 +116,7 @@ class SortedByCountryPage extends ConsumerWidget {
                                   Navigator.push(
                                     context, 
                                     MaterialPageRoute(builder: (context) => F_Player(
-                                      url: playUrl, country:playCountry, channelCount:allChanellsCount),
+                                      url: playUrl, country:playCountry),
                                       )
                                     );
                                   /*Navigator.push(
@@ -192,7 +193,15 @@ class SortedByCountryPage extends ConsumerWidget {
                     Stack(
                       alignment: Alignment.bottomCenter,
                       children: [
-                        Padding(
+                        Container(
+                          width: 80,
+                          height: 50,
+                          child: Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            color: Color.fromARGB(0, 255, 255, 255),
+                          ),
+                        )
+                        /*Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -228,7 +237,7 @@ class SortedByCountryPage extends ConsumerWidget {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20),
                                   topRight: Radius.circular(20))),
-                        )
+                        )*/
                       ],
                     ),
                   ],

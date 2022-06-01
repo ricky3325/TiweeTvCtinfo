@@ -90,8 +90,7 @@ class Menu extends ConsumerWidget {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) => index == 0
-                                                  ? SortedByCountryPage(allChanellsCount:channelCard
-                                                  .state[index].channelCount ,)
+                                                  ? SortedByCountryPage()
                                                   : SortedByCategoryPage(
                                                       categoryName: channelCard
                                                           .state[index].name,

@@ -88,10 +88,9 @@ class _FulBackPage extends State<TestCard> {
   }
 }
 class F_Player extends ConsumerWidget {
-  F_Player({Key? key, required this.url, required this.country, required this.channelCount}) : super(key: key);
+  F_Player({Key? key, required this.url, required this.country}) : super(key: key);
   final String country;
   final String url;
-  final int channelCount;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   var betterPlayerConfiguration = BetterPlayerConfiguration(
@@ -207,7 +206,7 @@ class F_Player extends ConsumerWidget {
                                   splashColor: Color.fromARGB(255, 153, 105, 199).withAlpha(30),
                                   onTap: () {
                                     debugPrint('Country tapped.');
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => SortedByCountryPage(allChanellsCount: channelCount ,)));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => SortedByCountryPage())); //Ricky： All Channel Count set 5000
                                   },
                                   child: ListTile(
                                     title: Text("COUNTRY"),
@@ -231,7 +230,7 @@ class F_Player extends ConsumerWidget {
                         await prefs.setString('url', _Channels[i].url);
                         await prefs.setString('country', country);
 
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => F_Player(url: _Channels[i].url, country: country, channelCount: channelCount),));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => F_Player(url: _Channels[i].url, country: country),));
                       },
                       child: ListTile(
                         title: Text(_Channels[i].name),
@@ -292,7 +291,7 @@ class F_Player extends ConsumerWidget {
                         await prefs.setString('url', _Channels[i].url);
                         await prefs.setString('country', country);
 
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => F_Player(url: _Channels[i].url, country: country, channelCount: channelCount),));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => F_Player(url: _Channels[i].url, country: country),));
                       },
                       child: ListTile(
                         title: Text(_Channels[i].name),
