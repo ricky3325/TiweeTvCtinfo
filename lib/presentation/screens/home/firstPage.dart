@@ -173,7 +173,7 @@ class F_Player extends ConsumerWidget {
                         Column(
                           children: <Widget>[
                             Text(
-                              "Tiwee888",//Ricky：APP上方橫條
+                              "Alloa TV",//Ricky：APP上方橫條
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
